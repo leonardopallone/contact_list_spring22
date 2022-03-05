@@ -34,7 +34,7 @@ class Contact < ApplicationRecord
   # - parents has_many, has ones 
 
   has_many :notes, dependent: :destroy
-  
+
   #Has one ONLY for adreeses
   has_one :address, dependent: :destroy
 
@@ -82,9 +82,61 @@ class Contact < ApplicationRecord
 
   validates :first_name, :age, :last_name, :email, :phone, presence: true 
   validates :email, uniqueness: true 
-  validates :age, numericality: { only_integer: true, less_than_or_equal_to: 100, greater_than_or_equal_to: 18 }
+  validates :age, numericality: { only_integer: true, less_than_or_equal_to: 150, greater_than_or_equal_to: 18 }
   
   
   # Callbacks 
   # Methods
+  # Callbacks - pair off with a function / method it will run at a certain time
+  # before_validation
+  # after_validation
+  # around_validation
+  # before_save
+  # after_save
+  # around_save
+  # before_create
+  # after_create
+  # around_create
+
+  # class CreditCard < ActiveRecord::Base
+  #   before_save :encrypt_card_number
+   
+  #   private
+   
+  #     def encrypt_card_number
+  #       self.card_number = bcrypt(self.card_number)
+  #     end
+  # end
+  
+  # Models Methods
+  # - run logic on the table or the table content
+  # - fat models and skinny controllers 
+
+  # class method 
+    # - apply to the whole model 
+    # def self.methodname
+
+    # end
+    
+    # def self.by_first_name
+    #   order(:first_name)
+    # end
+    # Contact.by_first_name
+    # ---------------------------
+
+  # instance method 
+  # instance of the obj
+    # def methodname
+
+    # end
+
+    # def fullName 
+    #   "#{self.first_name} #{self.last_name}"
+    # end
+
+    # @person.fullName
+
+  end
+
+
 end
